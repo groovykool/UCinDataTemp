@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
+using UCinDataTemp.Models;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -16,6 +17,7 @@ namespace UCinDataTemp
     {
 
         ObservableCollection<Stupid> Source = new ObservableCollection<Stupid>();
+        ObservableCollection<SchLVItem> Source2 = new ObservableCollection<SchLVItem>();
         private string _BLeader;
 
         public string BLeader
@@ -30,6 +32,8 @@ namespace UCinDataTemp
             Source.Add(new Stupid("Leader one"));
             Source.Add(new Stupid("Leader two"));
             Source.Add(new Stupid("Leader three"));
+            //Source2.Add(new SchLVItem {Parttype="inductor",TextLab="Inductor" });
+            //Source2.Add(new SchLVItem { Parttype = "gnd", TextLab = "Ground" });
         }
 
 
@@ -49,6 +53,7 @@ namespace UCinDataTemp
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
     public class Stupid
     {
         public string Strg { get; set; }

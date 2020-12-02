@@ -19,17 +19,45 @@ namespace UCinDataTemp.Controls
 {
     public sealed partial class Simple : UserControl
     {
-        public static readonly DependencyProperty LeaderProperty = 
+        static List<Simple> AllSimple = new List<Simple>();
+        public static readonly DependencyProperty LeaderProperty =
             DependencyProperty.Register("Leader",
                 typeof(string),
-                typeof(Simple), new PropertyMetadata("Leader Text"));
+                typeof(Simple), new PropertyMetadata("Leader Text", LeaderChanged));
+
+        private static void LeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+            LeaderChanged(d);
+        }
+
+        private static void LeaderChanged(DependencyObject d)
+        {
+            var p = d as Simple;
+        }
+
+
+
 
         int index = 1;
 
         public Simple()
         {
             this.InitializeComponent();
+            Loaded += Simple_Loaded;
+            Unloaded += Simple_Unloaded; ;
         }
+
+        private void Simple_Unloaded(object sender, RoutedEventArgs e)
+        {
+            AllSimple.Remove(sender as Simple);
+        }
+
+        private void Simple_Loaded(object sender, RoutedEventArgs e)
+        {
+            AllSimple.Add(sender as Simple);
+        }
+
         public string Leader
         {
             get { return (string)GetValue(LeaderProperty); }

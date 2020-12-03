@@ -61,12 +61,34 @@ namespace UCinDataTemp
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public class Stupid
+    public class Stupid : INotifyPropertyChanged
     {
-        public string Strg { get; set; }
+        //public string Strg { get; set; }
+        private string _Strg;
+
+        public string Strg
+        {
+            get { return _Strg; }
+            set { Set(ref _Strg, value, "Strg"); }
+        }
         public Stupid(string s)
         {
             Strg = s;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            //if (Equals(storage, value))
+            //{
+            //    return;
+            //}
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

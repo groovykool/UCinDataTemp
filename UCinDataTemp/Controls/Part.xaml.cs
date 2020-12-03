@@ -25,8 +25,9 @@ namespace UCinDataTemp.Controls
         #region Properties
        
         public Transform Trans { get; set; }
-        //string PData { get; set; }
-     
+        //string PData { get; set; } = "M0,50 l20,0";
+
+
         string PathKey;
       
         public static TextBox Log;

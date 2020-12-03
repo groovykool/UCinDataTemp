@@ -8,75 +8,40 @@
     d:DesignHeight="200"
     d:DesignWidth="200"
     IsTabStop="True"
-    
     IsTapEnabled="False"
-   
     RenderTransformOrigin="0.5,0.5"
     Canvas.ZIndex="200"
-    Grid.RowSpan="{x:Bind rowspan,Mode=OneTime}"
-    Grid.ColumnSpan="{x:Bind colspan,Mode=OneTime}"
-   >
+    Grid.RowSpan="2"
+    Grid.ColumnSpan="2">
     <!--IsTabStop and IsTapEnabled MUST BE True for focus and keydown events to work-->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="/Controls/PartDict.xaml" />
-                <ResourceDictionary
-                    Source="/Controls/CStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
     </UserControl.Resources>
     <!--#region ContextFyout -->
-    
     <!--#endregion-->
     <Viewbox
         x:Name="VB"
         IsTapEnabled="False">
-        <!--#region VisualStateManager -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup
-                x:Name="CommonStates">
-                <VisualState
-                    x:Name="Normal"></VisualState>
-                <VisualState
-                    x:Name="Selected">
-                    <VisualState.Setters>
-                        <Setter
-                            Target="Shape.Stroke"
-                            Value="{ThemeResource SystemControlHighlightAccentBrush}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState
-                    x:Name="Grouped">
-                    <VisualState.Setters>
-                        <Setter
-                            Target="Shape.Stroke"
-                            Value="{ThemeResource SystemBaseHighColor}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <!--#endregion-->
-        <!--  Trans,PData  normal properties-->
-        <!--  Tness,Stroke dependency properties-->
         <Canvas
             x:Name="Base"
-            Width="{x:Bind basex,Mode=OneTime}"
-            Height="{x:Bind basey,Mode=OneTime}"
+            Width="100"
+            Height="100"
             Canvas.ZIndex="10"
             IsHitTestVisible="True"
             IsTapEnabled="False">
             <Canvas
                 x:Name="Sub"
-                Width="{x:Bind basex,Mode=OneTime}"
-                Height="{x:Bind basey,Mode=OneTime}"
+                Width="100"
+                Height="100"
                 Canvas.ZIndex="10"
                 IsHitTestVisible="True"
-                RenderTransform="{x:Bind Trans}"
-                RenderTransformOrigin="0.5,0.5"
                 IsTapEnabled="False">
+                <!--"{x:Bind PData,Mode=OneWay}"-->
                 <Path
                     IsTapEnabled="False"
                     Canvas.ZIndex="10"
@@ -88,19 +53,8 @@
                     StrokeStartLineCap="Round"
                     StrokeEndLineCap="Round"
                     IsHitTestVisible="True"
-                    
                     Stroke="OrangeRed"
-                    Data="{x:Bind PData,Mode=OneWay}"></Path>
-                <Border
-                    x:Name="HitBorder"
-                    Height="{x:Bind hitheight,Mode=OneTime}"
-                    Width="{x:Bind hitwidth,Mode=OneTime}"
-                    Background="Transparent"
-                    Opacity="1"
-                    IsHitTestVisible="True"
-                    Canvas.Left="{x:Bind hitleft,Mode=OneTime}"
-                    Canvas.Top="{x:Bind hittop,Mode=OneTime}"
-                     />
+                    Data="{x:Bind PData,Mode=OneWay}" />
             </Canvas>
         </Canvas>
     </Viewbox>

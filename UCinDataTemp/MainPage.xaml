@@ -8,56 +8,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    RequestedTheme="Dark"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
         <DataTemplate
-            x:Key="PRT"
+            x:Name="LVISch"
             x:DataType="local:Stupid">
             <Grid
-                Margin="8">
-                <c:Simple
-                    Height="40"
-                    Leader="{x:Bind Strg,Mode=OneWay}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate
-            x:Name="LVISch"
-            x:DataType="Models:SchLVItem">
-            <Grid
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="4"
-                HorizontalAlignment="Left"
-                Margin="0">
+                Width="100"
+                Height="100"
+                Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="Auto" />
-                    <RowDefinition
-                        Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Grid Width="100" Height="100" Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <!--{x:Bind Parttype,Mode=OneWay}-->
-                    <c:Part
-                        Ptype="{x:Bind Parttype,Mode=OneWay}"
-                        />
-                </Grid>
-                <TextBlock
-                    Grid.Row="0"
-                    Text="{x:Bind TextLab,Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Style="{ThemeResource CaptionTextBlockStyle}"
-                    Opacity="1"
-                    TextWrapping="Wrap"
-                    MaxLines="3"
-                    Margin="0,0,4,0" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--{x:Bind Parttype,Mode=OneWay}-->
+                <c:Part
+                    Ptype="{x:Bind Strg,Mode=OneWay}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -68,33 +41,21 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <c:Simple
-            Grid.Column="0"
-            Height="40"
-            Margin="20"
-            Leader="{x:Bind BLeader,Mode=OneWay}" />
         <Grid
-            VerticalAlignment="Top" Width="100" Height="100"> 
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+            Grid.Column="0"
+            VerticalAlignment="Top"
+            Margin="20"
+            BorderBrush="Gold"
+            BorderThickness="1"
+            Width="100"
+            Height="100">
             <c:Part
-                Ptype="inductor"
-               />
+                Ptype="{x:Bind PText,Mode=OneWay}" />
         </Grid>
         <ListView
-            x:Name="LV"
-            Grid.Column="1"
-            Margin="20"
-            ItemsSource="{x:Bind Source}"
-            ItemTemplate="{StaticResource PRT}"></ListView>
-        <ListView
             x:Name="LV2"
+            BorderBrush="Gold"
+            BorderThickness="1"
             Grid.Column="2"
             Margin="20"
             ItemsSource="{x:Bind Source2}"

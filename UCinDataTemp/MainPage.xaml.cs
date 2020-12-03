@@ -3,21 +3,17 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
-using UCinDataTemp.Models;
 
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace UCinDataTemp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
 
         ObservableCollection<Stupid> Source = new ObservableCollection<Stupid>();
-        ObservableCollection<SchLVItem> Source2 = new ObservableCollection<SchLVItem>();
+        ObservableCollection<Stupid> Source2 = new ObservableCollection<Stupid>();
         private string _BLeader;
 
         public string BLeader
@@ -25,13 +21,24 @@ namespace UCinDataTemp
             get { return _BLeader; }
             set { Set(ref _BLeader, value, "BLeader"); }
         }
+
+        private string _PText;
+
+        public string PText
+        {
+            get { return _PText; }
+            set { Set(ref _PText, value, "PText"); }
+        }
         public MainPage()
         {
             this.InitializeComponent();
             BLeader = "Leader from x:Bind";
+            PText = "inductor";
             Source.Add(new Stupid("Leader one"));
             Source.Add(new Stupid("Leader two"));
             Source.Add(new Stupid("Leader three"));
+            Source2.Add(new Stupid("inductor"));
+            Source2.Add(new Stupid("gnd"));
             //Source2.Add(new SchLVItem {Parttype="inductor",TextLab="Inductor" });
             //Source2.Add(new SchLVItem { Parttype = "gnd", TextLab = "Ground" });
         }
